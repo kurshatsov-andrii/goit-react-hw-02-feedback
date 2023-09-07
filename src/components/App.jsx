@@ -49,9 +49,10 @@ class App extends Component {
             onLeaveFeedback={this.onLeaveFeedback}
           />
         </Section>
+        <Section title="Statistics"></Section>
 
         {total ? (
-          <Section title="Statistics">
+          
             <Statistics
               good={good}
               neutral={neutral}
@@ -59,9 +60,9 @@ class App extends Component {
               total={total}
               positivePercentage={positivePercentage}
             />
-          </Section>
+          
         ) : (
-          <Notification message="There is no feedback" />
+          <Notification message="No feedback given" />
         )}
       </>
     );
@@ -69,20 +70,3 @@ class App extends Component {
 }
 
 export default App;
-
-// export const App = () => {
-//   return (
-//     <div
-//       style={{
-//         height: '100vh',
-//         display: 'flex',
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//         fontSize: 40,
-//         color: '#010101'
-//       }}
-//     >
-//       React homework template
-//     </div>
-//   );
-// };
