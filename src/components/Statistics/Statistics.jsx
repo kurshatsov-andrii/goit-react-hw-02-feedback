@@ -9,7 +9,7 @@ export const Statistics = ({
   positivePercentage,
 }) => {
   return (    
-    <ul className={css.statisticList}>
+    <ul className={css.statisticlist}>
       <li>{`Good: ${good}`}</li>
       <li>{`Neutral: ${neutral}`}</li>
       <li>{`Bad: ${bad}`}</li>

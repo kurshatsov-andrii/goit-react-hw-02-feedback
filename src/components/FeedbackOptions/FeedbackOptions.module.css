@@ -1,10 +1,10 @@
-.feedbackList{
+.feedbacklist{
     display: flex;
     gap: 0px;
     padding-left: 0px;    
 }
 
-.feedbackButton{
+.feedbackbutton{
     cursor: pointer;
     font-size: 14px;
     margin-left: 20px;
@@ -17,12 +17,12 @@
     padding-right: 10px;    
 }
 
-.feedbackButton::first-letter{
+.feedbackbutton::first-letter{
     font-size: 120%;
     text-transform: uppercase;
 }
 
-.feedbackButton:hover, .feedbackButton:focus, .feedbackButton:active{
+.feedbackbutton:hover, .feedbackbutton:focus, .feedbackbutton:active{
     color: #fff;
     background-color: #404040;
 }
