@@ -12,53 +12,45 @@ class App extends Component {
   };
 
   onLeaveFeedback = event => {
-    if (event.target.name === 'good') {
-      this.setState(prevState => ({ good: prevState.good + 1 }));
-    } else if (event.target.name === 'neutral') {
-      this.setState(prevState => ({ neutral: prevState.neutral + 1 }));
-    } else if (event.target.name === 'bad') {
-      this.setState(prevState => ({ bad: prevState.bad + 1 }));
-    }
+    let name = event.target.name;
+    this.setState(prevState => ({ [name]: prevState[name] + 1 }));
   };
-
-  countTotalFeedback = (good, neutral, bad) => good + neutral + bad;
 
   countPositiveFeedbackPercentage = (good, total) => {
-    const positivePercentage = (good * 100) / total;
-    if (!positivePercentage) {
-      return 0;
-    } else {
-      return Math.round(positivePercentage);
-    }
-  };
+    return total > 0 ? Math.round(good * 100 / total) : 0;
+  }
 
   render() {
-    const { good, neutral, bad } = this.state;
-    const options = Object.keys(this.state);
-    const total = this.countTotalFeedback(good, neutral, bad);
-    const positivePercentage = this.countPositiveFeedbackPercentage(
-      good,
-      total
-    );
+    
+    const { good, neutral, bad } = this.state;    
+
+  this.countTotalFeedback = Object.values(this.state).reduce(function(sum, el) {
+	return sum + el;
+  }, 0);  
+
+    const total = this.countTotalFeedback;
 
     return (
       <>
         <Section title="Please leave feedback">
           <FeedbackOptions
-            options={options}
-            onLeaveFeedback={this.onLeaveFeedback}
+            options={Object.keys(this.state)} onLeaveFeedback={this.onLeaveFeedback}
           />
         </Section>
-        <Section title="Statistics"></Section>
 
-        {total ? (          
+        {total ? (
+          <Section title="Statistics">
             <Statistics
               good={good}
               neutral={neutral}
-              bad={bad}
+              bad={bad}              
               total={total}
-              positivePercentage={positivePercentage}
-            />          
+              positivePercentage={this.countPositiveFeedbackPercentage(
+      good,
+      total
+    )}
+            />
+          </Section>
         ) : (
           <Notification message="There is no feedback" />
         )}
